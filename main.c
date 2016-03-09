@@ -30,7 +30,7 @@ void nacitaj(struct zoznam* head)
     while ((check=getc(fr))!=EOF)
         {
           ungetc(check,fr);
-          fscanf(fr,"%s\t%llu",&actual->nick,&actual->id);
+          fscanf(fr,"%[^\t]\t%llu\n",&actual->nick,&actual->id);
           if((check=getc(fr))!=EOF)
                 {
                     ungetc(check,fr);
@@ -70,4 +70,3 @@ int main(void)
     vypis(head);
     return 0;
 }
-

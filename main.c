@@ -21,8 +21,8 @@ void nacitaj(struct zoznam* head)
     FILE *fr;
     if ((fr=fopen("input.txt", "r"))==NULL)
         {
-        printf("Zaznamy neboli nacitane\n");
-        return 0;
+        printf("Error opening file!\n");
+        exit(1);
         }
     struct zoznam *actual;
     actual=head;

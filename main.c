@@ -5,6 +5,7 @@
 
 struct zoznam{
     char nick[30];
+	char remark[30];
     unsigned long long int id;
     struct zoznam *dalsi;
 };
@@ -30,7 +31,7 @@ void nacitaj(struct zoznam* head)
     while ((check=getc(fr))!=EOF)
         {
           ungetc(check,fr);
-          fscanf(fr,"%[^\t]\t%llu\n",&actual->nick,&actual->id);
+          fscanf(fr,"%[^\t]\t%llu\t%[^\n]\n",&actual->nick,&actual->id,&actual->remark);
           if((check=getc(fr))!=EOF)
                 {
                     ungetc(check,fr);
@@ -56,7 +57,7 @@ void vypis(struct zoznam *pointer){
         exit(1);
     }
     while(act!=NULL){
-        fprintf(fw,"<member id=\"%llu\" nick=\"%s\">\n\t<name>N/A</name>\n\t<email>N/A</email>\n\t<icq>N/A</icq>\n\t<remark>N/A</remark>\n</member>",act->id,act->nick);
+        fprintf(fw,"<member id=\"%llu\" nick=\"%s\">\n\t<name>N/A</name>\n\t<email>contact@417rct.org</email>\n\t<icq>N/A</icq>\n\t<remark>%s</remark>\n</member>",act->id,act->nick,act->remark);
     act=act->dalsi;
     }
     fclose(fw);
